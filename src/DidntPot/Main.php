@@ -67,6 +67,7 @@ class Main extends PluginBase implements Listener {
 		$level = $player->getLevel();
 
 		$entity = Entity::createBaseNBT(new Vector3($player->getX(), $player->getY(), $player->getZ()));
+		$entity->setMotion($entity->getDirectionVector()->normalize()->multiply(2)); 
 		$fireball = new LargeFireball($player->level, $entity, $player);
 		$fireball->setExplode(true);
 		$launch = new ProjectileLaunchEvent($fireball);
