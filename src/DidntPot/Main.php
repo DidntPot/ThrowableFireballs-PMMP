@@ -61,14 +61,14 @@ class Main extends PluginBase implements Listener {
         if($item->getId() == 385){
 
 		$x = $player->getX(); //Gets X Position
-		$y = $player->getY(); //Gets Y Position
+		$y = $player->getY() + $player->getEyeHeight(); //Gets Y Position
 		$z = $player->getZ(); //Gets Z Position
 
 		$level = $player->getLevel();
 
 		$entity = Entity::createBaseNBT(new Vector3($player->getX(), $player->getY(), $player->getZ()));
 		$fireball = new LargeFireball($player->level, $entity, $player);
-		$fireball->setMotion($fireball->getDirectionVector()->normalize()->multiply(2)); 
+		$fireball->setMotion($player->getDirectionVector()->normalize()->multiply(2)); 
 		$fireball->setExplode(true);
 		$launch = new ProjectileLaunchEvent($fireball);
 		$launch->call();
